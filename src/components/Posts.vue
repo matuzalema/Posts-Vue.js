@@ -14,6 +14,7 @@
         <tr
           v-for="post in visiblePosts"
           :key="post.id"
+          class="row-table"
         >
           <td>{{ post.id }}</td>
           <td>{{ post.title }}</td>
@@ -89,5 +90,10 @@
 </script>
 
 <style scoped>
-
+  .row-table {
+    transition: .5s;
+  }
+  .row-table:hover {
+    background-color: rgb(236, 236, 236);
+  }
 </style>
