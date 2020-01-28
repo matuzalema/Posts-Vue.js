@@ -25,13 +25,23 @@
     >
       Wystąpił błąd: {{ error }}
     </b-alert>
-    <b-btn
-      type="submit"
-      variant="primary"
-      class="d-block ml-auto"
-    >
-      Wyślij
-    </b-btn>
+    <b-row align-h="end">
+      <b-btn
+        type="submit"
+        variant="primary"
+        class="btn-send-form"
+      >
+        Wyślij
+      </b-btn>
+      <b-btn
+        type="button"
+        variant="warning"
+        class="btn-clear-form"
+        @click="cleanForm"
+      >
+        Wyczyść
+      </b-btn>
+    </b-row>
   </form>
 </template>
 
@@ -53,6 +63,10 @@
       }
     },
     methods: {
+      cleanForm(){
+        this.title = ""
+        this.body = ""
+      },
       async submit() {
         this.data.push({ 
           title: this.title,
@@ -75,5 +89,7 @@
 </script>
 
 <style scoped>
-
+.btn-clear-form {
+  margin: 0 15px;
+}
 </style>
