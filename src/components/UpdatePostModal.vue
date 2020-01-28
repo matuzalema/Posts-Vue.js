@@ -2,6 +2,7 @@
   <b-modal
     :visible="visible"
     title="Edytuj post"
+    title-tag="h2"
     @hide="closeModal"
   >
     <form>
@@ -85,5 +86,7 @@
 </script>
 
 <style scoped>
-
+  h5 .modal-title {
+    font-size: 136px;
+  }
 </style>
