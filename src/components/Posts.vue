@@ -8,6 +8,7 @@
           <th>Tytuł</th>
           <th>Treść</th>
           <th>Edycja</th>
+          <th>Usuń</th>
         </tr>
       </thead>
       <tbody>
@@ -27,6 +28,14 @@
               <i class="fas fa-pencil-alt" />
             </b-btn>
           </td>
+          <td>
+            <b-btn
+              variant="warning"
+              @click="openDeletePostModal(post)"
+            >
+              <i class="fas fa-trash-alt" />
+            </b-btn>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -44,21 +53,29 @@
       @close="selectedPost = null"
       @updated="loadPosts"
     />
+    <delete-post-modal
+      :visible="!!deletePost"
+      :posts="posts"
+      @close="deletePost = null"
+      @delete="onDeletePost(deletePost)"
+    />
   </div>
 </template>
 
 <script>
   import axios from "axios";
   import UpdatePostModal from "./UpdatePostModal";
+  import DeletePostModal from "./DeletePostModal";
 
   export default {
     name: "Posts",
-    components: {UpdatePostModal},
+    components: {UpdatePostModal, DeletePostModal},
     data() {
       return {
         posts: [],
         page: 1,
         selectedPost: null,
+        deletePost: null,
       };
     },
     computed: {
@@ -84,6 +101,12 @@
       },
       openUpdatePostModal(post) {
         this.selectedPost = post;
+      },
+      openDeletePostModal(post){
+         this.deletePost = post;
+      },
+      onDeletePost(deletePost){
+        this.posts = this.posts.filter(item => item !== deletePost);
       },
     },
   }

@@ -2,7 +2,6 @@
   <b-modal
     :visible="visible"
     title="Edytuj post"
-    title-tag="h2"
     @hide="closeModal"
   >
     <form>

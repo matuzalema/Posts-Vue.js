@@ -25,23 +25,13 @@
     >
       Wystąpił błąd: {{ error }}
     </b-alert>
-    <b-row align-h="end">
-      <b-btn
-        type="submit"
-        variant="primary"
-        class="btn-send-form"
-      >
-        Wyślij
-      </b-btn>
-      <b-btn
-        type="button"
-        variant="warning"
-        class="btn-clear-form"
-        @click="cleanForm"
-      >
-        Wyczyść
-      </b-btn>
-    </b-row>
+    <b-btn
+      type="submit"
+      variant="primary"
+      class="d-block ml-auto"
+    >
+      Wyślij
+    </b-btn>
   </form>
 </template>
 
@@ -63,20 +53,13 @@
       }
     },
     methods: {
-      cleanForm(){
-        this.title = ""
-        this.body = ""
-      },
       async submit() {
-        this.data.push({ 
+        const data = {
           title: this.title,
           body: this.body,
-        });
+        };
         try {
-          const response = await axios.post("../../db.json", data);
-          console.log("ddd");
-          
-          // const response = await axios.post("http://localhost:3001", data);
+          const response = await axios.post(url, data);
           console.log(response);
           this.$emit("created");
         } catch(error) {
