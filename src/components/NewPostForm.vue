@@ -1,24 +1,30 @@
 <template>
   <form @submit.prevent="submit">
     <h2>Dodaj nowy post</h2>
-    <b-form-group
-      label="Tytuł"
-      label-for="title"
-    >
-      <b-input
-        id="title"
-        v-model="title"
-      />
-    </b-form-group>
-    <b-form-group
-      label="Treść"
-      label-for="body"
-    >
-      <b-textarea
-        id="body"
-        v-model="body"
-      />
-    </b-form-group>
+    <b-row>
+      <b-col lg="6">
+        <b-form-group
+          label="Tytuł"
+          label-for="title"
+        >
+          <b-input
+            id="title"
+            v-model="title"
+          />
+        </b-form-group>
+      </b-col>
+      <b-col lg="6">
+        <b-form-group
+          label="Treść"
+          label-for="body"
+        >
+          <b-textarea
+            id="body"
+            v-model="body"
+          />
+        </b-form-group>
+      </b-col>
+    </b-row>
     <b-alert
       :show="!!error"
       variant="danger"
