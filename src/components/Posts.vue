@@ -39,6 +39,11 @@
         </tr>
       </tbody>
     </table>
+    <b-table 
+      stacked 
+      :items="visiblePosts" 
+      class="table-min hide"
+    />
     <b-pagination
       v-model="page"
       :total-rows="total"
@@ -113,10 +118,26 @@
 </script>
 
 <style scoped>
-  .row-table {
-    transition: .5s;
+.table.b-table.b-table-stacked{
+  display: none;
+}
+.table {
+  min-width: 500px;
+}
+.row-table {
+  transition: .5s;
+}
+.row-table:hover {
+  background-color: rgb(236, 236, 236);
+}
+
+@media (max-width: 576px) {
+  .table.b-table.b-table-stacked{
+  display: block;
+  min-width: 100%;
   }
-  .row-table:hover {
-    background-color: rgb(236, 236, 236);
+  .table {
+    display: none;
   }
+}
 </style>
