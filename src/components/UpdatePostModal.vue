@@ -34,6 +34,7 @@
       <b-btn
         variant="primary"
         class="d-block ml-auto"
+        :disabled="btnDisable"
         @click.prevent="submit"
       >
         Wyślij
@@ -57,6 +58,7 @@
         body: this.post ? this.post.body : "",
         previousTitle: "",
         previousBody: "",
+        btnDisable: false,
       };
     },
     watch: {
@@ -77,7 +79,9 @@
           body: this.body.trim(),
         };
         if(this.title !== this.previousTitle || this.body !== this.previousBody){
+          this.btnDisable = true;
           const response = await axios.patch(`/posts/${id}`, data);
+          this.btnDisable = false;
           console.log(response);
           this.$emit("updated");
           this.closeModal();

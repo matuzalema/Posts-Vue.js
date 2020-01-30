@@ -43,6 +43,7 @@
         type="submit"
         variant="primary"
         class="btn-send-form"
+        :disabled="btnDisable"
       >
         Wyślij
       </b-btn>
@@ -60,6 +61,7 @@
         title: "",
         body: "",
         error: null,
+        btnDisable: false,
       };
     },
     computed: {
@@ -75,7 +77,10 @@
             body: this.body.trim(),
           };
           try {
+            this.btnDisable = true;
             const response = await axios.post(this.url, data);
+            this.btnDisable = false;
+
             console.log(response);
             this.$emit("created");
             this.title="";
