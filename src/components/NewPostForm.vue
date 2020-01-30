@@ -69,19 +69,21 @@
     },
     methods: {
       async submit() {
-        const data = {
-          title: this.title.trim(),
-          body: this.body.trim(),
-        };
-        try {
-          const response = await axios.post(this.url, data);
-          console.log(response);
-          this.$emit("created");
-          this.title="";
-          this.body ="";
-        } catch(error) {
-          console.error(error);
-          this.error = error;
+        if(this.title !== "" && this.body !== ""){
+          const data = {
+            title: this.title.trim(),
+            body: this.body.trim(),
+          };
+          try {
+            const response = await axios.post(this.url, data);
+            console.log(response);
+            this.$emit("created");
+            this.title="";
+            this.body ="";
+          } catch(error) {
+            console.error(error);
+            this.error = error;
+          }
         }
       },
       cleanForm(){

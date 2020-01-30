@@ -55,6 +55,8 @@
       return {
         title: this.post ? this.post.title : "",
         body: this.post ? this.post.body : "",
+        previousTitle: "",
+        previousBody: "",
       };
     },
     watch: {
@@ -62,6 +64,8 @@
         if (val) {
           this.title = val.title;
           this.body = val.body;
+          this.previousTitle = val.title;
+          this.previousBody = val.body;
         }
       },
     },
@@ -72,10 +76,12 @@
           title: this.title.trim(),
           body: this.body.trim(),
         };
-        const response = await axios.patch(`/posts/${id}`, data);
-        console.log(response);
-        this.$emit("updated");
-        this.closeModal();
+        if(this.title !== this.previousTitle || this.body !== this.previousBody){
+          const response = await axios.patch(`/posts/${id}`, data);
+          console.log(response);
+          this.$emit("updated");
+          this.closeModal();
+        }
       },
       closeModal() {
         this.$emit("close");
