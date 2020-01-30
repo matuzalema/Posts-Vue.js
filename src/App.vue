@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <app-title class="m-5" />
+    <app-title 
+      title="Frontend assignment" 
+      class="m-5" 
+    />
     <new-post-form
       class="m-5"
       @created="reloadPosts"

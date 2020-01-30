@@ -16,7 +16,7 @@
 export default {
   name: "AppTitle",
   props: {
-    title: {type: String, default: "Frontend assignment"},
+    title: {type: String, default: ""},
   }
 }
 </script>

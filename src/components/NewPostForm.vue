@@ -31,13 +31,22 @@
     >
       Wystąpił błąd: {{ error }}
     </b-alert>
-    <b-btn
-      type="submit"
-      variant="primary"
-      class="d-block ml-auto"
-    >
-      Wyślij
-    </b-btn>
+    <b-row align-h="end">
+      <b-btn
+        type="button"
+        variant="warning"
+        @click="cleanForm"
+      >
+        Wyczyść
+      </b-btn>
+      <b-btn
+        type="submit"
+        variant="primary"
+        class="btn-send-form"
+      >
+        Wyślij
+      </b-btn>
+    </b-row>
   </form>
 </template>
 
@@ -65,20 +74,26 @@
           body: this.body,
         };
         try {
-          const response = await axios.post(url, data);
+          const response = await axios.post(this.url, data);
           console.log(response);
           this.$emit("created");
+          this.title="";
+          this.body ="";
         } catch(error) {
           console.error(error);
           this.error = error;
         }
+      },
+      cleanForm(){
+        this.title = ""
+        this.body = ""
       },
     },
   }
 </script>
 
 <style scoped>
-.btn-clear-form {
+.btn-send-form {
   margin: 0 15px;
 }
 </style>
