@@ -70,8 +70,8 @@
     methods: {
       async submit() {
         const data = {
-          title: this.title,
-          body: this.body,
+          title: this.title.trim(),
+          body: this.body.trim(),
         };
         try {
           const response = await axios.post(this.url, data);

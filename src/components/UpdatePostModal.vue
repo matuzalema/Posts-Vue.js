@@ -69,8 +69,8 @@
       async submit() {
         const id = this.post ? this.post.id : null;
         const data = {
-          title: this.title,
-          body: this.body,
+          title: this.title.trim(),
+          body: this.body.trim(),
         };
         const response = await axios.patch(`/posts/${id}`, data);
         console.log(response);
