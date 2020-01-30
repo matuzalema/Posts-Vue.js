@@ -1,5 +1,6 @@
 <template>
   <div>
+    <preloader />
     <h2>Lista postów</h2>
     <table class="table table-bordered ">
       <thead>
@@ -46,11 +47,11 @@
     />
     <b-pagination
       v-model="page"
+      align="center"
+      class="my-2"
       :total-rows="total"
       :per-page="perPage"
       :disabled="total === 0"
-      align="center"
-      class="my-2"
     />
     <update-post-modal
       :visible="!!selectedPost"
@@ -71,10 +72,15 @@
   import axios from "axios";
   import UpdatePostModal from "./UpdatePostModal";
   import DeletePostModal from "./DeletePostModal";
+  import Preloader from "./Preloader";
 
   export default {
     name: "Posts",
-    components: {UpdatePostModal, DeletePostModal},
+    components: {
+      UpdatePostModal, 
+      DeletePostModal, 
+      Preloader
+    },
     data() {
       return {
         posts: [],
@@ -113,7 +119,7 @@
       onDeletePost(deletePost){
         this.posts = this.posts.filter(item => item !== deletePost);
       },
-    },
+		},
   }
 </script>
 
